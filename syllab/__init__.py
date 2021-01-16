@@ -87,7 +87,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     }
 
     # haftalık konular
-    weekly_subjects = {}
+    weekly_subjects = []
     for i in range(16):
         hafta_str = "hafta_" + str(i+1)
         week = source.find(id=hafta_str).findAll('td')
@@ -95,7 +95,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             "subject": week[1].text.strip(),
             "reading": week[2].text.strip()
         }
-        weekly_subjects[i] = subject
+        weekly_subjects.append(subject)
 
     # evaluation system
     attendance_no = source.find(id="attendance_no")
